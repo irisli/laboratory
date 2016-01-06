@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Account, TransactionBuilder, Operation, Asset, Memo} from 'stellar-sdk';
+import {Account, TransactionBuilder, Operation, Asset, Memo, UnsignedHyper} from 'stellar-sdk';
 import {PubKeyPicker} from './FormComponents/PubKeyPicker';
 import {EasySelect} from './EasySelect';
 
@@ -15,6 +15,12 @@ export default class TxBuilderResult extends React.Component {
     }
     if (attributes.sequence === '') {
       validationErrors.push('Sequence number is a required field');
+    }
+    let minTimeBoundsExists = attributes.minTimeBounds !== '';
+    let maxTimeBoundsExists = attributes.maxTimeBounds !== '';
+    if ((minTimeBoundsExists || maxTimeBoundsExists) &&
+       !(minTimeBoundsExists && maxTimeBoundsExists)) {
+      validationErrors.push('Both time bounds are required.')
     }
     if (attributes.memoType !== 'MEMO_NONE' && attributes.memoContent === '') {
       validationErrors.push('Memo content is required if memo type is selected');
@@ -68,6 +74,14 @@ function buildTransaction(attributes, operations) {
     let opts = {};
     if (attributes.fee !== '') {
       opts.fee = attributes.fee;
+    }
+
+    // KLUDGE: May break when bug in js-stellar-base is fixed
+    if (attributes.minTimeBounds !== '' && attributes.maxTimeBounds !== '') {
+      opts.timebounds = {
+        minTime: UnsignedHyper.fromString(attributes.minTimeBounds),
+        maxTime: UnsignedHyper.fromString(attributes.maxTimeBounds),
+      };
     }
 
     var transaction = new TransactionBuilder(account, opts)

@@ -62,6 +62,10 @@ function onAttributeUpdate(dispatch, param, values) {
   case 'fee':
     newAttributes.fee = values.value;
   break;
+  case 'timeBounds':
+    newAttributes.minTimeBounds = values.min;
+    newAttributes.maxTimeBounds = values.max;
+  break;
   case 'memo':
     newAttributes.memoType = values.type;
     newAttributes.memoContent = values.content;

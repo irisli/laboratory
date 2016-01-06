@@ -28,6 +28,13 @@ export default class TxBuilderAttributes extends React.Component {
           key: 'fee',
         })}
         {Picker({
+          type: 'TimeBounds',
+          onUpdate: onUpdate.bind(this, 'timeBounds'),
+          label: 'Time bounds (UNIX timestamp)',
+          required: false,
+          key: 'time',
+        })}
+        {Picker({
           type: 'Memo',
           onUpdate: onUpdate.bind(this, 'memo'),
           label: 'Memo',

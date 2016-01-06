@@ -15,6 +15,7 @@ let pickerComponents = {
   SecretKeyPicker: require('./SecretKeyPicker'),
   StroopsPicker: require('./StroopsPicker'),
   TransactionPicker: require('./TransactionPicker'),
+  TimeBoundsPicker: require('./TimeBoundsPicker'),
   XdrPicker: require('./XdrPicker'),
 }
 

@@ -68,6 +68,8 @@ const defaultAttributes = {
   sourceAccount: '',
   sequence: '',
   fee: '',
+  minTimeBounds: '',
+  maxTimeBounds: '',
   memoType: 'MEMO_NONE',
   memoContent: '',
 };
