@@ -53,7 +53,19 @@ class TransactionSigner extends React.Component {
           href={txPostLink(result.xdr)}>Submit this transaction to the network</a>;
       }
 
-      let treeView = <TreeView className="TransactionSigner__details__tree" nodes={extrapolateFromXdr(result.xdr, 'TransactionEnvelope')} />
+      let xdrNodes, txDetails;
+      try {
+        xdrNodes = extrapolateFromXdr(result.xdr, 'TransactionEnvelope');
+        let treeView = <TreeView className="TransactionSigner__details__tree" nodes={extrapolateFromXdr(result.xdr, 'TransactionEnvelope')} />
+        txDetails = <div className="so-back TransactionSigner__details">
+          <div className="so-chunk">
+            <p className="TransactionSigner__details__title">Transaction result details</p>
+            {treeView}
+          </div>
+        </div>
+      } catch (e) {
+        // Likely due to invalid secret key. Error messaging is handled in other sections
+      }
 
       content = <div>
         <div className="so-back">
@@ -97,12 +109,7 @@ class TransactionSigner extends React.Component {
             {postLink}
           </div>
         </div>
-        <div className="so-back TransactionSigner__details">
-          <div className="so-chunk">
-            <p className="TransactionSigner__details__title">Transaction result details</p>
-            {treeView}
-          </div>
-        </div>
+        {txDetails}
       </div>
     }
     return <div className="TransactionSigner">
