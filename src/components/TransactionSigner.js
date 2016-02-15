@@ -12,6 +12,8 @@ import OptionsTablePair from './OptionsTable/Pair';
 import SecretKeyPicker from './FormComponents/SecretKeyPicker';
 import MultiPicker from './FormComponents/MultiPicker';
 import {txPostLink} from '../utilities/linkBuilder';
+import extrapolateFromXdr from '../utilities/extrapolateFromXdr';
+import TreeView from './TreeView';
 
 class TransactionSigner extends React.Component {
   render() {
@@ -50,6 +52,8 @@ class TransactionSigner extends React.Component {
         postLink = <a className="s-button TxSignerResult__submit"
           href={txPostLink(result.xdr)}>Submit this transaction to the network</a>;
       }
+
+      let treeView = <TreeView className="TransactionSigner__details__tree" nodes={extrapolateFromXdr(result.xdr, 'TransactionEnvelope')} />
 
       content = <div>
         <div className="so-back">
@@ -91,6 +95,12 @@ class TransactionSigner extends React.Component {
             <p className="TxSignerResult__summary">{result.message}</p>
             {codeResult}
             {postLink}
+          </div>
+        </div>
+        <div className="so-back TransactionSigner__details">
+          <div className="so-chunk">
+            <p className="TransactionSigner__details__title">Transaction result details</p>
+            {treeView}
           </div>
         </div>
       </div>
