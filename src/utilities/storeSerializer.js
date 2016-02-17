@@ -45,6 +45,15 @@ export function serializeStore(slug, state) {
         txsignerResult.xdr = state.transactionSigner.tx.xdr;
       }
       return txsignerResult;
+    case 'xdr-viewer':
+      let xdrViewer = {};
+      if (state.xdrViewer.input !== '') {
+        xdrViewer.input = state.xdrViewer.input;
+      }
+      if (state.xdrViewer.type !== '') {
+        xdrViewer.type = state.xdrViewer.type;
+      }
+      return xdrViewer;
     default:
       return {};
   }
@@ -79,6 +88,8 @@ export function deserializeQueryObj(slug, queryObj) {
       }
       return {};
     case 'txsigner':
+      return queryObj;
+    case 'xdr-viewer':
       return queryObj;
     default:
       return {};
