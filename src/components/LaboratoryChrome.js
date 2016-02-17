@@ -5,6 +5,7 @@ import NetworkPicker from './NetworkPicker';
 import EndpointExplorer from './EndpointExplorer';
 import TransactionBuilder from './TransactionBuilder';
 import TransactionSigner from './TransactionSigner';
+import XdrViewer from './XdrViewer';
 import {RouterListener} from '../utilities/simpleRouter';
 
 function LaboratoryChrome(props) {
@@ -38,6 +39,7 @@ function LaboratoryChrome(props) {
           {tabItem('Endpoint Explorer', 'explorer')}
           {tabItem('Transaction Builder', 'txbuilder')}
           {tabItem('Transaction Signer', 'txsigner')}
+          {tabItem('XDR Viewer', 'xdr-viewer')}
         </nav>
       </div>
     </div>
@@ -57,6 +59,8 @@ function getContent(slug) {
       return <TransactionBuilder />;
     case 'txsigner':
       return <TransactionSigner />;
+    case 'xdr-viewer':
+      return <XdrViewer />;
     default:
       return <SimplePage><p>Page "{slug}" not found</p></SimplePage>
   }

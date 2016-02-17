@@ -23,7 +23,7 @@
   @import 'TxSignerKeys';
   @import 'TxSignerResult';
 
-@import 'TransactionImporter';
+@import 'XdrViewer';
 
 @import 'TreeView';
 @import 'CodeBlock';
@@ -32,6 +32,7 @@
 // General css modules
 @import 'optionsTable';
 @import 'simpleTable';
+@import 'xdrInput';
 
 @import 'picker';
   @import 'ManualMultiPicker';
