@@ -37,7 +37,7 @@ export default class TreeView extends React.Component {
 function RowValue(props) {
   let value, childNodes, separatorNeeded, separator;
   let {node} = props;
-
+  console.log(node)
   if (typeof node.value === 'string') {
     value = String(node.value);
     separatorNeeded = true;

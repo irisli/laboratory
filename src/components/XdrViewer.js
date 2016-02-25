@@ -26,6 +26,7 @@ function XdrViewer(props) {
       xdrNodes = extrapolateFromXdr(state.input, 'TransactionEnvelope');
       treeView = <TreeView nodes={extrapolateFromXdr(state.input, state.type)} />
     } catch (e) {
+      console.log(e)
       errorMessage = <p>Unable to decode input as {state.type}</p>;
     }
   }

@@ -15,14 +15,11 @@ export default function extrapolateFromXdr(input, type) {
   // TODO: input validation
 
   let xdrObject;
-  try {
-    xdrObject = xdr[type].fromXDR(input, 'base64');
-  } catch(error) {
-    throw new Error('Input XDR could not be parsed');
-  }
-
+  xdrObject = xdr[type].fromXDR(input, 'base64');
+  console.log(xdrObject)
   let tree = [{}];
   buildTreeFromObject(xdrObject, tree[0], type);
+  console.log(tree)
   return tree;
 }
 
